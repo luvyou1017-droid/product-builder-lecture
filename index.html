@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마음유산 | 가족만의 비공개 SNS</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", sans-serif;
+      background: #fffaf3;
+      color: #2f261f;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 24px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .nav {
+      font-size: 14px;
+      color: #7a6a5e;
+    }
+
+    .hero {
+      min-height: 82vh;
+      padding: 80px 6% 60px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #f2dfcc;
+      color: #7a4d2f;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #6f6259;
+      max-width: 620px;
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 16px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #2f261f;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #2f261f;
+      border: 1px solid #e6d7c9;
+    }
+
+    .phone {
+      background: #fff;
+      border-radius: 36px;
+      padding: 24px;
+      box-shadow: 0 24px 80px rgba(65, 43, 28, 0.12);
+      max-width: 390px;
+      margin: 0 auto;
+      border: 1px solid #f0e2d5;
+    }
+
+    .phone-top {
+      font-size: 13px;
+      color: #9a8879;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: #fffaf3;
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 16px;
+      border: 1px solid #f0e2d5;
+    }
+
+    .card small {
+      color: #9a8879;
+    }
+
+    .card h3 {
+      margin: 8px 0;
+      font-size: 21px;
+    }
+
+    .audio {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #2f261f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    section {
+      padding: 90px 6%;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: #6f6259;
+      max-width: 720px;
+      margin-bottom: 44px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: white;
+      border-radius: 28px;
+      padding: 30px;
+      border: 1px solid #f0e2d5;
+    }
+
+    .feature .icon {
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature p {
+      color: #6f6259;
+      font-size: 16px;
+    }
+
+    .quote {
+      background: #2f261f;
+      color: white;
+      border-radius: 40px;
+      padding: 70px 8%;
+      text-align: center;
+    }
+
+    .quote h2 {
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.18;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .quote p {
+      color: #d8c9bc;
+      font-size: 18px;
+    }
+
+    .cta {
+      text-align: center;
+      padding-bottom: 120px;
+    }
+
+    .cta h2 {
+      font-size: clamp(34px, 5vw, 60px);
+      letter-spacing: -2px;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .cta p {
+      color: #6f6259;
+      font-size: 18px;
+      margin-bottom: 34px;
+    }
+
+    footer {
+      padding: 30px 6%;
+      border-top: 1px solid #eadccc;
+      color: #8b7b6e;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">마음유산</div>
+    <div class="nav">가족만의 비공개 SNS</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge">Private Family SNS</div>
+        <h1>
+          사람은 떠나도<br />
+          마음은 이어집니다.
+        </h1>
+        <p>
+          마음유산은 부모님, 자녀, 그리고 아직 태어나지 않은 아이에게
+          목소리와 편지를 남기는 가족만의 비공개 기록 공간입니다.
+        </p>
+        <div class="buttons">
+          <a href="#start" class="btn btn-primary">마음 남기기</a>
+          <a href="#about" class="btn btn-secondary">서비스 알아보기</a>
+        </div>
+      </div>
+
+      <div class="phone">
+        <div class="phone-top">오늘의 마음</div>
+
+        <div class="card">
+          <small>엄마가 남긴 목소리 · 0:34</small>
+          <h3>“밥은 잘 챙겨 먹고 있니?”</h3>
+          <p>2년 전 오늘, 엄마가 남긴 말이 도착했습니다.</p>
+          <div class="audio">
+            <span>▶ 원본 목소리 듣기</span>
+            <span>0:34</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <small>미래의 아이에게</small>
+          <h3>아직 만나지 않았지만</h3>
+          <p>이미 너를 기다리는 마음이 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">
+        Instagram이 세상과 연결한다면,<br />
+        마음유산은 가족을 연결합니다.
+      </h2>
+      <p class="section-desc">
+        좋아요와 팔로워보다 중요한 것은, 언젠가 다시 꺼내볼 수 있는 진심입니다.
+        마음유산은 지금 보내는 메시지가 아니라 시간이 지나도 남는 가족의 마음을 보관합니다.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="icon">🎙️</div>
+          <h3>목소리 보관</h3>
+          <p>
+            부모님이 자녀에게, 자녀가 부모님에게 남기는 목소리를
+            안전하게 보관합니다.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">💌</div>
+          <h3>미래에 열리는 편지</h3>
+          <p>
+            생일, 결혼, 출산, 스무 살이 되는 날처럼
+            특정한 날에 열리는 마음을 남길 수 있습니다.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>가족만의 비공개 공간</h3>
+          <p>
+            공개 SNS가 아닙니다. 초대한 가족만 볼 수 있는
+            조용하고 사적인 기록 공간입니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="quote">
+        <h2>
+          사진은 순간을 남기고,<br />
+          마음유산은 마음을 남깁니다.
+        </h2>
+        <p>
+          지금 하지 못한 말이 언젠가 가족에게 닿을 수 있도록.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta" id="start">
+      <h2>
+        오늘, 누구에게<br />
+        마음을 남기고 싶나요?
+      </h2>
+      <p>
+        부모님께, 자녀에게, 미래의 아이에게.<br />
+        짧아도 괜찮습니다. 지금 마음을 그대로 남겨보세요.
+      </p>
+      <a href="mailto:hello@maeumyusan.com" class="btn btn-primary">
+        베타 테스트 신청하기
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 마음유산</div>
+    <div>가족의 마음을 기록하는 비공개 SNS</div>
+  </footer>
+</body>
+</html>
