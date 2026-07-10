@@ -299,6 +299,51 @@
       margin-bottom: 34px;
     }
 
+    .launch-form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .launch-form label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .launch-form input {
+      min-width: 0;
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 16px;
+      padding: 16px 20px;
+      outline: none;
+    }
+
+    .launch-form input:focus {
+      border-color: var(--text-soft);
+      box-shadow: 0 0 0 3px var(--border);
+    }
+
+    .launch-form input::placeholder {
+      color: var(--text-soft);
+    }
+
+    .form-message {
+      min-height: 24px;
+      margin-top: 14px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
     footer {
       padding: 30px 6%;
       border-top: 1px solid var(--border-strong);
@@ -322,6 +367,14 @@
 
       h1 {
         letter-spacing: -2px;
+      }
+
+      .launch-form {
+        flex-direction: column;
+      }
+
+      .launch-form .btn {
+        width: 100%;
       }
     }
   </style>
@@ -435,11 +488,21 @@
       </h2>
       <p>
         부모님께, 자녀에게, 미래의 아이에게.<br />
-        짧아도 괜찮습니다. 지금 마음을 그대로 남겨보세요.
+        출시되면 가장 먼저 알려드릴게요.
       </p>
-      <a href="mailto:hello@maeumyusan.com" class="btn btn-primary">
-        베타 테스트 신청하기
-      </a>
+      <form class="launch-form" id="launch-form">
+        <label for="launch-email">이메일 주소</label>
+        <input
+          id="launch-email"
+          name="email"
+          type="email"
+          placeholder="이메일 주소"
+          autocomplete="email"
+          required
+        />
+        <button class="btn btn-primary" type="submit">출시 알림 받기</button>
+      </form>
+      <div class="form-message" id="form-message" role="status" aria-live="polite"></div>
     </section>
   </main>
 
@@ -471,6 +534,35 @@
     themeToggle.addEventListener("click", () => {
       const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
       setTheme(nextTheme);
+    });
+
+    const launchForm = document.querySelector("#launch-form");
+    const launchEmail = document.querySelector("#launch-email");
+    const formMessage = document.querySelector("#form-message");
+
+    launchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!launchEmail.checkValidity()) {
+        formMessage.textContent = "알림을 받을 이메일 주소를 입력해주세요.";
+        launchEmail.focus();
+        return;
+      }
+
+      const email = launchEmail.value.trim();
+      const subject = encodeURIComponent("마음유산 출시 알림 신청");
+      const body = encodeURIComponent(`출시 알림을 받고 싶습니다.\n\n이메일: ${email}`);
+
+      formMessage.textContent = "메일 앱이 열리면 신청 메일을 보내주세요.";
+      window.location.href = `mailto:hello@maeumyusan.com?subject=${subject}&body=${body}`;
+
+      if (typeof gtag === "function") {
+        gtag("event", "launch_notify_submit");
+      }
+
+      if (typeof clarity === "function") {
+        clarity("event", "launch_notify_submit");
+      }
     });
   </script>
 </body>
