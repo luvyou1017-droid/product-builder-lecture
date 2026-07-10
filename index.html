@@ -12,11 +12,43 @@
     }
 
     body {
+      --bg: #fffaf3;
+      --surface: #ffffff;
+      --surface-soft: #fffaf3;
+      --text: #2f261f;
+      --text-muted: #6f6259;
+      --text-soft: #7a6a5e;
+      --border: #f0e2d5;
+      --border-strong: #eadccc;
+      --badge-bg: #f2dfcc;
+      --badge-text: #7a4d2f;
+      --inverse-bg: #2f261f;
+      --inverse-text: #ffffff;
+      --inverse-muted: #d8c9bc;
+      --shadow: rgba(65, 43, 28, 0.12);
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
         "Noto Sans KR", sans-serif;
-      background: #fffaf3;
-      color: #2f261f;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #151414;
+      --surface: #201f1d;
+      --surface-soft: #29241f;
+      --text: #f7efe7;
+      --text-muted: #c7b8aa;
+      --text-soft: #b8a99c;
+      --border: #413832;
+      --border-strong: #4d433b;
+      --badge-bg: #3a2b22;
+      --badge-text: #f1c6a3;
+      --inverse-bg: #f7efe7;
+      --inverse-text: #201914;
+      --inverse-muted: #5e5047;
+      --shadow: rgba(0, 0, 0, 0.36);
     }
 
     header {
@@ -34,7 +66,33 @@
 
     .nav {
       font-size: 14px;
-      color: #7a6a5e;
+      color: var(--text-soft);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--text-soft);
     }
 
     .hero {
@@ -50,8 +108,8 @@
       display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
-      background: #f2dfcc;
-      color: #7a4d2f;
+      background: var(--badge-bg);
+      color: var(--badge-text);
       font-size: 14px;
       margin-bottom: 24px;
     }
@@ -65,7 +123,7 @@
 
     .hero p {
       font-size: 20px;
-      color: #6f6259;
+      color: var(--text-muted);
       max-width: 620px;
       margin-bottom: 36px;
     }
@@ -87,42 +145,42 @@
     }
 
     .btn-primary {
-      background: #2f261f;
-      color: white;
+      background: var(--inverse-bg);
+      color: var(--inverse-text);
     }
 
     .btn-secondary {
-      background: white;
-      color: #2f261f;
-      border: 1px solid #e6d7c9;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
     .phone {
-      background: #fff;
+      background: var(--surface);
       border-radius: 36px;
       padding: 24px;
-      box-shadow: 0 24px 80px rgba(65, 43, 28, 0.12);
+      box-shadow: 0 24px 80px var(--shadow);
       max-width: 390px;
       margin: 0 auto;
-      border: 1px solid #f0e2d5;
+      border: 1px solid var(--border);
     }
 
     .phone-top {
       font-size: 13px;
-      color: #9a8879;
+      color: var(--text-soft);
       margin-bottom: 18px;
     }
 
     .card {
-      background: #fffaf3;
+      background: var(--surface-soft);
       border-radius: 24px;
       padding: 22px;
       margin-bottom: 16px;
-      border: 1px solid #f0e2d5;
+      border: 1px solid var(--border);
     }
 
     .card small {
-      color: #9a8879;
+      color: var(--text-soft);
     }
 
     .card h3 {
@@ -134,8 +192,8 @@
       margin-top: 16px;
       padding: 14px 16px;
       border-radius: 18px;
-      background: #2f261f;
-      color: white;
+      background: var(--inverse-bg);
+      color: var(--inverse-text);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -154,7 +212,7 @@
 
     .section-desc {
       font-size: 18px;
-      color: #6f6259;
+      color: var(--text-muted);
       max-width: 720px;
       margin-bottom: 44px;
     }
@@ -166,10 +224,10 @@
     }
 
     .feature {
-      background: white;
+      background: var(--surface);
       border-radius: 28px;
       padding: 30px;
-      border: 1px solid #f0e2d5;
+      border: 1px solid var(--border);
     }
 
     .feature .icon {
@@ -183,13 +241,13 @@
     }
 
     .feature p {
-      color: #6f6259;
+      color: var(--text-muted);
       font-size: 16px;
     }
 
     .quote {
-      background: #2f261f;
-      color: white;
+      background: var(--inverse-bg);
+      color: var(--inverse-text);
       border-radius: 40px;
       padding: 70px 8%;
       text-align: center;
@@ -203,7 +261,7 @@
     }
 
     .quote p {
-      color: #d8c9bc;
+      color: var(--inverse-muted);
       font-size: 18px;
     }
 
@@ -220,15 +278,15 @@
     }
 
     .cta p {
-      color: #6f6259;
+      color: var(--text-muted);
       font-size: 18px;
       margin-bottom: 34px;
     }
 
     footer {
       padding: 30px 6%;
-      border-top: 1px solid #eadccc;
-      color: #8b7b6e;
+      border-top: 1px solid var(--border-strong);
+      color: var(--text-soft);
       font-size: 14px;
       display: flex;
       justify-content: space-between;
@@ -255,7 +313,12 @@
 <body>
   <header>
     <div class="logo">마음유산</div>
-    <div class="nav">가족만의 비공개 SNS</div>
+    <div class="header-actions">
+      <div class="nav">가족만의 비공개 SNS</div>
+      <button class="theme-toggle" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+        <span aria-hidden="true">☾</span>
+      </button>
+    </div>
   </header>
 
   <main>
@@ -368,5 +431,31 @@
     <div>© 2026 마음유산</div>
     <div>가족의 마음을 기록하는 비공개 SNS</div>
   </footer>
+  <script>
+    const themeToggle = document.querySelector(".theme-toggle");
+    const themeIcon = themeToggle.querySelector("span");
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    function setTheme(theme) {
+      const isDark = theme === "dark";
+
+      document.body.dataset.theme = theme;
+      localStorage.setItem("theme", theme);
+      themeToggle.setAttribute("aria-pressed", String(isDark));
+      themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "라이트 모드로 전환" : "다크 모드로 전환"
+      );
+      themeIcon.textContent = isDark ? "☀" : "☾";
+    }
+
+    setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+      setTheme(nextTheme);
+    });
+  </script>
 </body>
 </html>
